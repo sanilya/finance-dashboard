@@ -2,6 +2,7 @@
   "name": "finance-app-mvp",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sanilya.github.io/finance-dashboard",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -28,7 +29,9 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "test:calculations": "react-scripts test --testPathPattern=calculations",
     "test:components": "react-scripts test --testPathPattern=pages",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +54,7 @@
   "devDependencies": {
     "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.4.18",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.35",
     "react-scripts": "5.0.1",
     "tailwindcss": "^3.4.1"
