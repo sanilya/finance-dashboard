@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { assetsRepository, incomeRepository, expensesRepository, loansRepository, bankAccountsRepository, settingsRepository } from '../lib/storage/localDB';
 import { Asset, BankAccount } from '../lib/models';
 import { formatCurrency } from '../lib/formatters/currency';
@@ -47,8 +47,7 @@ const Forecast: React.FC = () => {
   });
 
   // Function to refresh data and recalculate
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const refreshData = () => {
+  const refreshData = useCallback(() => {
     setLoading(true);
     
     // Show refresh message when explicitly refreshed
@@ -192,7 +191,7 @@ const Forecast: React.FC = () => {
     };
 
     loadData();
-  };
+  }, [lastRefresh]);
   
   // Listen for navigation events that should trigger refresh
   useEffect(() => {
@@ -212,7 +211,7 @@ const Forecast: React.FC = () => {
   // Load data and calculate initial projection
   useEffect(() => {
     refreshData();
-  }, [lastRefresh]);  // refreshData is excluded from deps with eslint-disable comment
+  }, [refreshData]);
 
   // Generate wealth projection data
   const generateProjection = (

@@ -41,7 +41,6 @@ export const generateAmortizationSchedule = (
   tenureMonths: number
 ) => {
   const monthlyRate = interestRate / 100 / 12;
-  const emi = calculateEMI(principal, interestRate, tenureMonths);
   
   let remainingPrincipal = principal;
   const schedule = [];

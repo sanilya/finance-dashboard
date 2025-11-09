@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { assetsRepository, incomeRepository, expensesRepository, loansRepository, bankAccountsRepository } from '../lib/storage/localDB';
-import { Asset, BankAccount } from '../lib/models';
+import { BankAccount } from '../lib/models';
 import { formatCurrency } from '../lib/formatters/currency';
 import BankAccountAssetView from '../components/BankAccountAssetView';
 import { debugNetWorthCalculation } from '../lib/utils/debugUtils';
@@ -13,7 +13,6 @@ const Dashboard: React.FC = () => {
   const [monthlyExpenses, setMonthlyExpenses] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const [assets, setAssets] = useState<Asset[]>([]);
   const [bankAccounts, setBankAccounts] = useState<BankAccount[]>([]);
   const [assetsTotal, setAssetsTotal] = useState(0);
   const [bankAccountsTotal, setBankAccountsTotal] = useState(0);
@@ -22,7 +21,6 @@ const Dashboard: React.FC = () => {
     const calculateDashboardData = () => {
       // Get all data
       const fetchedAssets = assetsRepository.getAll();
-      setAssets(fetchedAssets);
       
       const fetchedBankAccounts = bankAccountsRepository.getAll();
       setBankAccounts(fetchedBankAccounts);
